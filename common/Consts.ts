@@ -3,6 +3,7 @@ import Env from './Env';
 export const COLORS = {
   background_primary: '#fff',
   background_secondary: '#dcdcdc',
+  background_third: '#8c8c8c',
 
   text_primary: '#000',
   text_secondary: '#010101',

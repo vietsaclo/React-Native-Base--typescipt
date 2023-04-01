@@ -1,6 +1,8 @@
-import { View, StyleSheet, TouchableOpacity, Alert } from "react-native"
-import { Table, TableWrapper, Row, Rows, Text } from 'react-native-table-component';
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native"
+import { Table, TableWrapper, Row, Rows } from 'react-native-table-component';
 import { COLORS } from "../../common/Consts";
+import StylesCommon from "../../common/StylesCommon";
+import { PropsWithChildren } from "react";
 
 const tableHeader = ['Hôm Nay', 'Trạng Thái', 'Khả Lợi', 'Tiền Còn Lại'];
 
@@ -9,10 +11,30 @@ const Header = (): JSX.Element => {
     ['20-10-2023', 'Được Rút', '100.000đ', '650.000đ'],
   ];
 
-  const elementButton = (value: any) => (
-    <TouchableOpacity onPress={() => Alert.alert(value)}>
+  const buttonViewCurrent = () => (
+    <TouchableOpacity>
       <View>
-        <Text>button</Text>
+        <Text style={[
+          StylesCommon.textCenter,
+          StylesCommon.padding,
+          StylesCommon.bgThird,
+          StylesCommon.textWhite,
+          StylesCommon.upper,
+        ]}>Đến hiện tại</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  const buttonReset = () => (
+    <TouchableOpacity>
+      <View>
+        <Text style={[
+          StylesCommon.textCenter,
+          StylesCommon.padding,
+          StylesCommon.bgThird,
+          StylesCommon.textWhite,
+          StylesCommon.upper,
+        ]}>Cài đặt lại</Text>
       </View>
     </TouchableOpacity>
   );
@@ -25,7 +47,7 @@ const Header = (): JSX.Element => {
           <Row data={tableHeader} style={styles.head} textStyle={styles.text} />
           <Rows data={tableData} textStyle={styles.text} />
           <Rows data={[
-            // [elementButton('1'), elementButton('2')],
+            [buttonViewCurrent(), buttonReset()],
           ]} textStyle={styles.text} />
         </TableWrapper>
       </Table>
@@ -47,5 +69,5 @@ const styles = StyleSheet.create({
     margin: 6,
     color: COLORS.text_black,
     textAlign: 'center',
-  }
+  },
 });
