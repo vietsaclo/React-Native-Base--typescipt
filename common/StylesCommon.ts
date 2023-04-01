@@ -24,6 +24,9 @@ const StylesCommon = StyleSheet.create({
   textRight: {
     textAlign: 'right',
   },
+  textLineThrough: {
+    textDecorationLine: 'line-through',
+  },
   padding: {
     padding: 6,
   },

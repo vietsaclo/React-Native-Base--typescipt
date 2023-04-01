@@ -8,5 +8,9 @@ export const ActionTypes = {
     LOADING: 'CHAT_GPT__LOADING',
     ME: 'CHAT_GPT__ME',
     GPT: 'CHAT_GPT__GPT',
-  }
+  },
+
+  TIKOP: {
+    UPDATE: 'TIKOP_UPDATE',
+  },
 }

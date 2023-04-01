@@ -5,24 +5,23 @@ import { PropsWithChildren } from "react";
 import Pubs from "../../common/Pubs";
 
 type bodyProps = PropsWithChildren<{
-  startDate: Date,
-  stopDate: Date,
+  totalDate: number;
 }>
 
 const BodyContent = (props: bodyProps): JSX.Element => {
   const renderCheckItems = () => {
-    const currentDate = props.startDate;
     const result = [];
-    let dateText = '';
-    let index = 0;
-    do {
-      dateText = Pubs.toDateFormat(currentDate);
-      result.push(<CheckItem key={dateText} isChecked={index < 10} textDisplay={dateText} />);
-      console.log(dateText, Pubs.toDateFormat(props.stopDate), ' | ', index);
+    const currentDate = Pubs.getCurrentDate();
+    for (let i = 0; i < props.totalDate; i++) {
+      result.push(
+        <CheckItem
+          onPress={() => false}
+          key={i}
+          isChecked={i < 10}
+          textDisplay={Pubs.toDateFormat(currentDate)}
+        />);
       currentDate.setDate(currentDate.getDate() + 1);
-      if (index++ > 365 * 3) break;
-
-    }while(dateText !== Pubs.toDateFormat(props.stopDate));
+    }
 
     return result;
   }

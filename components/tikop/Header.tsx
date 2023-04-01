@@ -3,12 +3,32 @@ import { Table, TableWrapper, Row, Rows } from 'react-native-table-component';
 import { COLORS } from "../../common/Consts";
 import StylesCommon from "../../common/StylesCommon";
 import { PropsWithChildren } from "react";
+import Pubs from "../../common/Pubs";
+import { useSelector } from "react-redux";
+import { I_tikopState } from "../../common/Interfaces";
+
+type headerPrpos = PropsWithChildren<{
+  onReset: Function,
+}>
 
 const tableHeader = ['Hôm Nay', 'Trạng Thái', 'Khả Lợi', 'Tiền Còn Lại'];
 
-const Header = (): JSX.Element => {
+const Header = (props: headerPrpos): JSX.Element => {
+  const tikopReducer: I_tikopState = useSelector((state: any) => state.tikop);
+
+  const getCashEarn = (): string => {
+    const spanNumber = Pubs.getDateSpan(tikopReducer.currentDateWithdraw, Pubs.toDateFormat(new Date()));
+    console.log({spanNumber, index: tikopReducer.currentDateWithdraw});
+
+    return Pubs.VND.format(spanNumber * tikopReducer.cashWithdraw);
+  }
+
+  const getCashRemaining = (): string => {
+    return Pubs.VND.format((tikopReducer.totalDate - tikopReducer.currentIndexWithdraw) * tikopReducer.cashWithdraw);
+  }
+
   const tableData = [
-    ['20-10-2023', 'Được Rút', '100.000đ', '650.000đ'],
+    [Pubs.toDateFormat(new Date()), 'Được Rút', getCashEarn(), getCashRemaining()],
   ];
 
   const buttonViewCurrent = () => (
@@ -26,7 +46,7 @@ const Header = (): JSX.Element => {
   );
 
   const buttonReset = () => (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => props.onReset()}>
       <View>
         <Text style={[
           StylesCommon.textCenter,

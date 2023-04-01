@@ -6,18 +6,25 @@ import { PropsWithChildren } from "react";
 type checkProps = PropsWithChildren<{
   isChecked: boolean,
   textDisplay: string,
+  onPress: Function,
 }>
 
 const CheckItem = (props: checkProps): JSX.Element => {
+  const lineThrough = () => {
+    return props.isChecked ? StylesCommon.textLineThrough : {};
+  }
+
   return (
-    <TouchableOpacity style={[
-      StylesCommon.padding,
-      StylesCommon.border,
-      StylesCommon.marginVc,
-      styles.container,
-    ]}>
+    <TouchableOpacity
+      onPress={() => props.onPress()}
+      style={[
+        StylesCommon.padding,
+        StylesCommon.border,
+        StylesCommon.marginVc,
+        styles.container,
+      ]}>
       <View>
-        <Text>{props.textDisplay}</Text>
+        <Text style={lineThrough()}>{props.textDisplay}</Text>
       </View>
 
       <View style={styles.rightIcon}>
@@ -36,6 +43,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingVertical: 12,
   },
   rightIcon: {
     width: '60%',
