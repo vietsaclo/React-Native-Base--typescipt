@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Chat-GPT 
-        <Text style={{color: COLORS.background_1}}>&nbsp;API</Text>
+        <Text style={{color: COLORS.background_secondary}}>&nbsp;API</Text>
       </Text>
 
       {gptReducer.loading ? (
@@ -28,18 +28,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.text_white,
     paddingVertical: 10,
     paddingHorizontal: 10,
   },
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: COLORS.black,
+    color: COLORS.text_black,
     width: '70%',
   },
   headerTextCalling: {
-    color: COLORS.background_1,
+    color: COLORS.background_secondary,
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: 24,

@@ -47,7 +47,7 @@ export default Message;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    backgroundColor: COLORS.background_0,
+    backgroundColor: COLORS.background_primary,
     padding: 7,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
     marginBottom: 7,
   },
   containerGpt: {
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.text_white,
   },
   avatar: {
     width: '10%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.background_1,
+    backgroundColor: COLORS.background_secondary,
   },
   avatarText: {
     fontWeight: 'bold',

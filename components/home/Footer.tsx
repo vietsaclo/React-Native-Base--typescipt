@@ -61,21 +61,21 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     padding: 7,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.text_white,
   },
   input: {
     width: '85%',
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.text_white,
     padding: 7,
     borderStyle: 'solid',
     borderWidth: 1,
-    borderColor: COLORS.background_1,
+    borderColor: COLORS.background_secondary,
     borderRadius: 4,
   },
   button: {
     width: 40,
     height: 40,
-    backgroundColor: COLORS.black,
+    backgroundColor: COLORS.text_black,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 30,
@@ -83,6 +83,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: COLORS.white,
+    color: COLORS.text_white,
   },
 });
