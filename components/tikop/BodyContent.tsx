@@ -26,9 +26,7 @@ const BodyContent = (props: bodyProps): JSX.Element => {
   const globalAppReducer: I_globalAppState = useSelector((state: any) => state.globalApp);
   const dispatch = useDispatch();
 
-  const handleSetWithdraw = (index: number, dateFull: string) => {
-    if (index <= tikopReducer.currentIndexWithdraw) return;
-    
+  const handleSetWithdraw = (index: number, dateFull: string) => {    
     if (!TikopAction.canWithdraw(dateFull)) {
       // Alert.alert('Thông Báo', 'Hôm nay bạn đã rút rồi! Đợi qua ngày mai :))');
       toast.show('Hôm nay bạn đã rút rồi! Đợi qua ngày mai :))', {
@@ -45,9 +43,9 @@ const BodyContent = (props: bodyProps): JSX.Element => {
     onSubmitSetWithdraw(true);
   }
 
-  useEffect(() => {
-    handleSetWithdraw(1, Pubs.toDateFormat(Pubs.getCurrentDate(), true));
-  }, [globalAppReducer.withdrawIndexCount]);
+  // useEffect(() => {
+  //   handleSetWithdraw(1, Pubs.toDateFormat(Pubs.getCurrentDate(), true));
+  // }, [globalAppReducer.withdrawIndexCount]);
 
   useEffect(() => {
     scrollRef.current.scrollTo({

@@ -14,6 +14,7 @@ const Tikop = (): JSX.Element => {
   const [configVisible, setConfigVisible] = useState(false);
   const [totalDate, setTotalDate] = useState(0);
 
+  const tikopReducer: I_tikopState = useSelector((state: any) => state.tikop);
   const globalAppReducer: I_globalAppState = useSelector((state: any) => state.globalApp);
   const dispatch = useDispatch();
 
@@ -71,18 +72,26 @@ const Tikop = (): JSX.Element => {
 
     updateByDispatch(totalDate, cashWithdraw, 0, startDateStr, startDateStr);
 
-    handleSetWithdrawDefault();
+    handleSetWithdraw(tikopReducer);
   }
 
-  const handleSetWithdrawDefault = async () => {
+  const handleSetWithdraw = async (tikopReducer: I_tikopState) => {
     setTimeout(async () => {
-      const payload: I_globalAppState = {
-        withdrawIndexCount: (globalAppReducer.withdrawIndexCount ?? 0) + 1,
-      }
+      const index = 1;
+      const dateFull = Pubs.toDateFormat(Pubs.getCurrentDate(), true);
+      const payload: I_tikopState = {
+        ...tikopReducer,
+        currentIndexWithdraw: index,
+        currentDateWithdraw: dateFull,
+      };
+      await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_INDEX_WITHDRAW, index.toString());
+      await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_DATE_WITHDRAW, dateFull);
+
       dispatch({
-        type: ActionTypes.GLOBLE_APP.UPDATE,
+        type: ActionTypes.TIKOP.UPDATE,
         payload,
       });
+      reloadFromStorage();
     }, 2000);
   }
 
