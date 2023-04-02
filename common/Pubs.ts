@@ -17,7 +17,10 @@ class Pubs {
     return new Date();
   }
 
-  static toDateFormat = (date: Date): string => {
+  static toDateFormat = (date: Date, isFull: boolean = false): string => {
+    if (isFull) {
+      return date.toISOString();
+    }
     return date.toISOString().split('T')[0];
   }
 

@@ -44,6 +44,9 @@ const StylesCommon = StyleSheet.create({
     borderColor: COLORS.text_black,
     borderWidth: 1,
   },
+  borderDot: {
+    borderStyle: 'dotted',
+  },
   bderRadius0: {
     borderRadius: 0,
   },

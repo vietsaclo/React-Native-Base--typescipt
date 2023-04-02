@@ -3,6 +3,7 @@ export interface I_tikopState {
   cashWithdraw: number,
   currentIndexWithdraw: number,
   currentDateWithdraw: string,
+  startDate: string,
 }
 
 export interface I_dateTime {

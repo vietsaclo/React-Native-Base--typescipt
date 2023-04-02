@@ -6,6 +6,7 @@ import { PropsWithChildren } from "react";
 import Pubs from "../../common/Pubs";
 import { useSelector } from "react-redux";
 import { I_tikopState } from "../../common/Interfaces";
+import TikopAction from "../../actions/TikopAction";
 
 type headerPrpos = PropsWithChildren<{
   onReset: Function,
@@ -16,18 +17,13 @@ const tableHeader = ['Hôm Nay', 'Trạng Thái', 'Khả Lợi', 'Tiền Còn L�
 const Header = (props: headerPrpos): JSX.Element => {
   const tikopReducer: I_tikopState = useSelector((state: any) => state.tikop);
 
-  const getCashEarn = (): string => {
-    if (!tikopReducer.currentDateWithdraw) return Pubs.VND.format(0);
-    const spanNumber = Pubs.getDateSpan(tikopReducer.currentDateWithdraw, Pubs.toDateFormat(Pubs.getCurrentDate()));
-    return Pubs.VND.format(spanNumber * tikopReducer.cashWithdraw);
-  }
-
-  const getCashRemaining = (): string => {
-    return Pubs.VND.format((tikopReducer.totalDate - tikopReducer.currentIndexWithdraw) * tikopReducer.cashWithdraw);
-  }
-
   const tableData = [
-    [Pubs.toDateFormat(Pubs.getCurrentDate()), 'Được Rút', getCashEarn(), getCashRemaining()],
+    [
+      Pubs.toDateFormat(Pubs.getCurrentDate(), false),
+      TikopAction.canWithdraw(tikopReducer.currentDateWithdraw, true) ? 'Được Rút' : 'Đã Rút', 
+      TikopAction.getCashEarn(tikopReducer),
+      TikopAction. getCashRemaining(tikopReducer),
+    ],
   ];
 
   const buttonViewCurrent = () => (
