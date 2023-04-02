@@ -47,11 +47,11 @@ class Pubs {
     const MAX = 365 * 10;
     while (this.toDateFormat(fromDate) !== this.toDateFormat(toDate)) {
       count ++;
-      console.log({
-        count,
-        fromDate: this.toDateFormat(fromDate),
-        toDate: this.toDateFormat(toDate),
-      });
+      // console.log({
+      //   count,
+      //   fromDate: this.toDateFormat(fromDate),
+      //   toDate: this.toDateFormat(toDate),
+      // });
       fromDate.setDate(fromDate.getDate() + 1);
       if (count > MAX) return MAX;
     }

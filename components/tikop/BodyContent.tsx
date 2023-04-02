@@ -1,7 +1,7 @@
-import { ScrollView, StyleSheet } from "react-native"
+import { ScrollView, StyleSheet, View } from "react-native"
 import StylesCommon from "../../common/StylesCommon";
 import CheckItem from "./CheckItem";
-import { PropsWithChildren, useEffect, useRef } from "react";
+import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import Pubs from "../../common/Pubs";
 import { useDispatch, useSelector } from "react-redux";
 import { I_globalAppState, I_tikopState } from "../../common/Interfaces";
@@ -17,12 +17,13 @@ type bodyProps = PropsWithChildren<{
 const BodyContent = (props: bodyProps): JSX.Element => {
   const toast = useToast();
   const scrollRef: any = useRef();
+  const [dataSourceCords, setDataSourceCords] = useState<number[]>([]);
 
   const tikopReducer: I_tikopState = useSelector((state: any) => state.tikop);
   const globalAppReducer: I_globalAppState = useSelector((state: any) => state.globalApp);
   const dispatch = useDispatch();
 
-  const handleSetWithdraw = async (index: number, dateFull: string) => {    
+  const handleSetWithdraw = async (index: number, dateFull: string) => {
     if (!TikopAction.canWithdraw(dateFull)) {
       // Alert.alert('Thông Báo', 'Hôm nay bạn đã rút rồi! Đợi qua ngày mai :))');
       toast.show('Hôm nay bạn đã rút rồi! Đợi qua ngày mai :))', {
@@ -54,7 +55,7 @@ const BodyContent = (props: bodyProps): JSX.Element => {
     const index = tikopReducer.currentIndexWithdraw - 1;
     scrollRef.current.scrollTo({
       x: 0,
-      y: index * 50 + index * 7.5,
+      y: dataSourceCords[index < 0 ? 0 : index],
       animated: true,
     });
   }, [globalAppReducer.viewCurrentCount]);
@@ -66,12 +67,20 @@ const BodyContent = (props: bodyProps): JSX.Element => {
     for (let i = 0; i < props.totalDate; i++) {
       const fullDate = currentDate.toISOString();
       result.push(
-        <CheckItem
-          onPress={() => handleSetWithdraw(i + 1, fullDate)}
-          key={i}
-          isChecked={i < tikopReducer.currentIndexWithdraw}
-          textDisplay={Pubs.toDateFormat(currentDate)}
-        />);
+        <View
+          onLayout={(event) => {
+            const layout = event.nativeEvent.layout;
+            dataSourceCords[i] = layout.y;
+            setDataSourceCords(dataSourceCords);
+          }}
+          key={i}>
+          <CheckItem
+            onPress={() => handleSetWithdraw(i + 1, fullDate)}
+            isChecked={i < tikopReducer.currentIndexWithdraw}
+            textDisplay={Pubs.toDateFormat(currentDate)}
+          />
+        </View>
+      );
       currentDate.setDate(currentDate.getDate() + 1);
     }
 
