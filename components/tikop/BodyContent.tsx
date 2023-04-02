@@ -3,8 +3,6 @@ import StylesCommon from "../../common/StylesCommon";
 import CheckItem from "./CheckItem";
 import { PropsWithChildren } from "react";
 import Pubs from "../../common/Pubs";
-import moment from "moment";
-import { I_dateTime } from "../../common/Interfaces";
 
 type bodyProps = PropsWithChildren<{
   totalDate: number;
@@ -13,10 +11,8 @@ type bodyProps = PropsWithChildren<{
 const BodyContent = (props: bodyProps): JSX.Element => {
   const renderCheckItems = () => {
     const result = [];
-    const current = moment();
-    let currentDate: I_dateTime;
+    const currentDate = Pubs.getCurrentDate();
     for (let i = 0; i < props.totalDate; i++) {
-      currentDate = Pubs.getCurrentDate(current);
       result.push(
         <CheckItem
           onPress={() => false}
@@ -24,7 +20,7 @@ const BodyContent = (props: bodyProps): JSX.Element => {
           isChecked={i < 10}
           textDisplay={Pubs.toDateFormat(currentDate)}
         />);
-      current.add(1, 'days');
+      currentDate.setDate(currentDate.getDate() + 1);
     }
 
     return result;

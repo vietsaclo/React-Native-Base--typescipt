@@ -1,6 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { I_dateTime } from "./Interfaces";
-import moment from "moment";
 
 class Pubs {
   static async saveStorageWithKey(key: string, value: string) {
@@ -15,37 +13,36 @@ class Pubs {
     return number.toString().padStart(numFormat, '0');
   }
 
-  static getCurrentDate = (current: any = null): I_dateTime => {
-    if (!current)
-      current = moment();
-    const result: I_dateTime = {
-      year: current.year(),
-      month: current.month(),
-      day: current.date(),
-      hours: current.hours(),
-      minutes: current.minutes(),
-      seconds: current.seconds(),
-    };
-
-    return result;
+  static getCurrentDate = (): Date => {
+    return new Date();
   }
 
-  static toDateFormat = (date: I_dateTime): string => {
-    return `${this.padToDigits(date.day)}-${this.padToDigits(date.month)}-${this.padToDigits(date.year)}`;
+  static toDateFormat = (date: Date): string => {
+    return date.toISOString().split('T')[0];
   }
 
   static getDateSpan = (fromDateString: string, toDateString: string): number => {
-    const fromDate = moment(fromDateString, 'DD-MM-YYYY');
-    const toDate = moment(toDateString, 'DD-MM-YYYY');
+    const fromDate = new Date(fromDateString);
+    const toDate = new Date(toDateString);
 
-    console.log({fromDateString, toDateString});
     let count = 0;
+    console.log({
+      fromDate: this.toDateFormat(fromDate),
+      toDate: this.toDateFormat(toDate),
+    });
+    console.log('\n');
     
-    while (this.toDateFormat(this.getCurrentDate(fromDate)) !== this.toDateFormat(this.getCurrentDate(toDate))) {
+    
+    while (this.toDateFormat(fromDate) !== this.toDateFormat(toDate)) {
       count ++;
-      console.log({count, cur: this.toDateFormat(this.getCurrentDate(fromDate)), toDate: this.toDateFormat(this.getCurrentDate(toDate))});
+      console.log({
+        count,
+        fromDate: this.toDateFormat(fromDate),
+        toDate: this.toDateFormat(toDate),
+      });
       
-      fromDate.add(1, 'days');
+      fromDate.setDate(fromDate.getDate() + 1);
+      if (count > 5) return 5;
     }
 
     return count;

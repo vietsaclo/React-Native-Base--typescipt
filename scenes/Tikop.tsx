@@ -40,7 +40,7 @@ const Tikop = (): JSX.Element => {
     const currentIndexWithdraw = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_INDEX_WITHDRAW) ?? 0;
     let currentDateWithdraw = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_DATE_WITHDRAW) ?? '';
     // Test
-    // currentDateWithdraw = '31-02-2023';
+    // currentDateWithdraw = '2023-03-31T03:58:02.250Z';
     if (!totalDate || !cashWithdraw) return;
     setTotalDate(Number(totalDate));
     
@@ -69,7 +69,6 @@ const Tikop = (): JSX.Element => {
       <BodyContentTikop totalDate={totalDate} />
 
       <ConfigPopup onSubmit={handleConfigSubmit} visible={configVisible} onVisible={setConfigVisible} />
-      <Text>abc</Text>
     </View>
   )
 }
