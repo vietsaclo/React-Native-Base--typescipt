@@ -24,6 +24,8 @@ const BodyContent = (props: bodyProps): JSX.Element => {
   const dispatch = useDispatch();
 
   const handleSetWithdraw = async (index: number, dateFull: string) => {
+    if (index <= tikopReducer.currentIndexWithdraw) return;
+
     if (!TikopAction.canWithdraw(dateFull)) {
       // Alert.alert('Thông Báo', 'Hôm nay bạn đã rút rồi! Đợi qua ngày mai :))');
       toast.show('Hôm nay bạn đã rút rồi! Đợi qua ngày mai :))', {
