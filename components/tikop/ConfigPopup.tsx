@@ -47,7 +47,7 @@ const ConfigPopup = (props: configProps): JSX.Element => {
   const inputWithdraw = () => {
     return (
       <TextInput
-      style={[StylesCommon.textCenter, StylesCommon.fwBold]}
+      style={[StylesCommon.textCenter, StylesCommon.fwBold, styles.textInput]}
       value={cashWithdraw} onChangeText={(text: string) => {
         setCashWithdraw(text.replace(/[^0-9]/g, ''))
       }} />
@@ -123,5 +123,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     fontWeight: 'bold',
+  },
+  textInput: {
+    fontSize: 20,
+    letterSpacing: 3,
   },
 });

@@ -54,11 +54,21 @@ const Header = (props: headerPrpos): JSX.Element => {
     </TouchableOpacity>
   );
 
+  const headerText = () => {
+    const stopDate = new Date(tikopReducer.startDate);
+    stopDate.setDate(stopDate.getDate() + tikopReducer.totalDate - 1);
+    return (
+      <Text style={[StylesCommon.padding, StylesCommon.textCenter, StylesCommon.fwBold]}>
+        Start: {Pubs.toShortDate(tikopReducer.startDate)} | Stop: {Pubs.toDateFormat(stopDate, false)} | Còn {tikopReducer.totalDate - tikopReducer.currentIndexWithdraw} Ngày
+      </Text>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <Table borderStyle={{ borderWidth: 2, borderColor: COLORS.text_black }}>
         <TableWrapper>
-          <Row data={['Start: 10-10-2023 | Stop: 10-03-2024 | Còn 365 Ngày']} style={styles.head} textStyle={styles.text} />
+          <Row data={[headerText()]} style={styles.head} textStyle={styles.text} />
           <Row data={tableHeader} style={styles.head} textStyle={styles.text} />
           <Rows data={tableData} textStyle={styles.text} />
           <Rows data={[

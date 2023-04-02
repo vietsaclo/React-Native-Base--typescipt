@@ -17,7 +17,10 @@ const CheckItem = (props: checkProps): JSX.Element => {
   const tikopReducer: I_tikopState = useSelector((state: any) => state.tikop);
 
   const lineThrough = () => {
-    return props.isChecked ? StylesCommon.textLineThrough : {};
+    return props.isChecked ? [
+      StylesCommon.textLineThrough,
+      StylesCommon.fwBold,
+    ] : [];
   }
 
   return (
@@ -31,7 +34,7 @@ const CheckItem = (props: checkProps): JSX.Element => {
         !props.isChecked ? StylesCommon.borderDot : {},
       ]}>
       <View>
-        <Text style={lineThrough()}>{props.textDisplay}</Text>
+        <Text style={[...lineThrough()]}>{props.textDisplay}</Text>
       </View>
 
       <View style={styles.rightIcon}>

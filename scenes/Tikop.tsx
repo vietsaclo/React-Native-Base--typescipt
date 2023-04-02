@@ -8,10 +8,12 @@ import { LOCAL_STORAGE_KEYS } from "../common/Consts";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionTypes } from "../common/ActionTypes";
 import { I_tikopState } from "../common/Interfaces";
+import { ToastProvider } from 'react-native-toast-notifications'
 
 const Tikop = (): JSX.Element => {
   const [configVisible, setConfigVisible] = useState(false);
   const [totalDate, setTotalDate] = useState(0);
+
   const tikopReducer: I_tikopState = useSelector((state: any) => state.tikop);
   const dispatch = useDispatch();
 
@@ -36,7 +38,7 @@ const Tikop = (): JSX.Element => {
     })
   }
 
-  const reloadFromStorage = async () =>{
+  const reloadFromStorage = async () => {
     const totalDate = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.TOTAL_DATE);
     const cashWithdraw = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.CASH_WITHDRAW);
     let currentIndexWithdraw = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_INDEX_WITHDRAW) ?? 0;
@@ -45,7 +47,7 @@ const Tikop = (): JSX.Element => {
 
     if (!totalDate || !cashWithdraw) return;
     setTotalDate(Number(totalDate));
-    
+
     updateByDispatch(Number(totalDate), Number(cashWithdraw), Number(currentIndexWithdraw), currentDateWithdraw, startDate);
   }
 
@@ -81,19 +83,21 @@ const Tikop = (): JSX.Element => {
         type: ActionTypes.TIKOP.UPDATE,
         payload,
       });
-  
+
       Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_INDEX_WITHDRAW, index.toString());
       Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_DATE_WITHDRAW, dateFull);
     }, 2000);
   }
 
   return (
-    <View style={styles.container}>
-      <HeaderTikop onReset={() => setConfigVisible(true)} />
-      <BodyContentTikop totalDate={totalDate} />
+    <ToastProvider>
+      <View style={styles.container}>
+        <HeaderTikop onReset={() => setConfigVisible(true)} />
+        <BodyContentTikop totalDate={totalDate} />
 
-      <ConfigPopup onSubmit={handleConfigSubmit} visible={configVisible} onVisible={setConfigVisible} />
-    </View>
+        <ConfigPopup onSubmit={handleConfigSubmit} visible={configVisible} onVisible={setConfigVisible} />
+      </View>
+    </ToastProvider>
   )
 }
 

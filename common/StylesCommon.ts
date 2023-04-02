@@ -60,6 +60,9 @@ const StylesCommon = StyleSheet.create({
   textWhite: {
     color: COLORS.text_white,
   },
+  textPrimary: {
+    color: COLORS.text_primary,
+  },
 });
 
 export default StylesCommon;

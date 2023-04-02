@@ -18,10 +18,19 @@ class Pubs {
   }
 
   static toDateFormat = (date: Date, isFull: boolean = false): string => {
-    if (isFull) {
-      return date.toISOString();
-    }
-    return date.toISOString().split('T')[0];
+    try {
+      if (isFull) {
+        return date.toISOString();
+      }
+      return date.toISOString().split('T')[0];
+    } catch (err) {
+      return '';
+    };
+  }
+
+  static toShortDate(date: string): string {
+    if (!date) return '';
+    return date.split('T')[0];
   }
 
   static getDateSpan = (fromDateString: string, toDateString: string): number => {
