@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import HeaderTikop from '../components/tikop/Header';
 import BodyContentTikop from "../components/tikop/BodyContent";
 import ConfigPopup from "../components/tikop/ConfigPopup";
@@ -20,7 +20,7 @@ const Tikop = (): JSX.Element => {
 
   const updateByDispatch = (totalDate: number, cashWithdraw: number, currentIndexWithdraw: number, currentDateWithdraw: string) => {
     if (!currentDateWithdraw) {
-      currentDateWithdraw = Pubs.toDateFormat(new Date());
+      currentDateWithdraw = Pubs.toDateFormat(Pubs.getCurrentDate());
     }
     const payload: I_tikopState = {
       totalDate: totalDate,
@@ -38,8 +38,9 @@ const Tikop = (): JSX.Element => {
     const totalDate = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.TOTAL_DATE);
     const cashWithdraw = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.CASH_WITHDRAW);
     const currentIndexWithdraw = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_INDEX_WITHDRAW) ?? 0;
-    const currentDateWithdraw = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_DATE_WITHDRAW) ?? '';
-    // const currentDateWithdraw = '31-02';
+    let currentDateWithdraw = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_DATE_WITHDRAW) ?? '';
+    // Test
+    // currentDateWithdraw = '31-02-2023';
     if (!totalDate || !cashWithdraw) return;
     setTotalDate(Number(totalDate));
     
@@ -59,7 +60,7 @@ const Tikop = (): JSX.Element => {
     Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CASH_WITHDRAW, cashWithdraw.toString());
     Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_INDEX_WITHDRAW, '0');
 
-    updateByDispatch(totalDate, cashWithdraw, 0, Pubs.toDateFormat(new Date()));
+    updateByDispatch(totalDate, cashWithdraw, 0, Pubs.toDateFormat(Pubs.getCurrentDate()));
   }
 
   return (
@@ -68,6 +69,7 @@ const Tikop = (): JSX.Element => {
       <BodyContentTikop totalDate={totalDate} />
 
       <ConfigPopup onSubmit={handleConfigSubmit} visible={configVisible} onVisible={setConfigVisible} />
+      <Text>abc</Text>
     </View>
   )
 }

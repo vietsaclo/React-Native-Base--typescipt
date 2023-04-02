@@ -17,9 +17,8 @@ const Header = (props: headerPrpos): JSX.Element => {
   const tikopReducer: I_tikopState = useSelector((state: any) => state.tikop);
 
   const getCashEarn = (): string => {
-    const spanNumber = Pubs.getDateSpan(tikopReducer.currentDateWithdraw, Pubs.toDateFormat(new Date()));
-    console.log({spanNumber, index: tikopReducer.currentDateWithdraw});
-
+    if (!tikopReducer.currentDateWithdraw) return Pubs.VND.format(0);
+    const spanNumber = Pubs.getDateSpan(tikopReducer.currentDateWithdraw, Pubs.toDateFormat(Pubs.getCurrentDate()));
     return Pubs.VND.format(spanNumber * tikopReducer.cashWithdraw);
   }
 
@@ -28,7 +27,7 @@ const Header = (props: headerPrpos): JSX.Element => {
   }
 
   const tableData = [
-    [Pubs.toDateFormat(new Date()), 'Được Rút', getCashEarn(), getCashRemaining()],
+    [Pubs.toDateFormat(Pubs.getCurrentDate()), 'Được Rút', getCashEarn(), getCashRemaining()],
   ];
 
   const buttonViewCurrent = () => (
