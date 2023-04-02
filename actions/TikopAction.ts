@@ -9,7 +9,8 @@ class TikopAction {
   }
 
   static getCashRemaining = (tikopReducer: I_tikopState): string => {
-    return Pubs.VND.format((tikopReducer.totalDate - tikopReducer.currentIndexWithdraw) * tikopReducer.cashWithdraw);
+    const cash = (tikopReducer.totalDate - tikopReducer.currentIndexWithdraw) * tikopReducer.cashWithdraw;
+    return Pubs.VND.format(cash > 0 ? cash : 0);
   }
 
   static canWithdraw = (dateFull: string, isTextDisplay: boolean = false): boolean => {

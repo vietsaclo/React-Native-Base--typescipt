@@ -56,13 +56,18 @@ const Header = (props: headerPrpos): JSX.Element => {
     </TouchableOpacity>
   );
 
+  const getDateRemaining = () => {
+    const result = tikopReducer.totalDate - tikopReducer.currentIndexWithdraw;
+    return result > 0 ? result : 0;
+  }
+
   const headerText = () => {
     const stopDate = new Date(tikopReducer.startDate);
     stopDate.setDate(stopDate.getDate() + tikopReducer.totalDate - 1);
     return (
       <Text style={[StylesCommon.padding, StylesCommon.textCenter, StylesCommon.fwBold]}>
         Start: {Pubs.toShortDate(tikopReducer.startDate)} | Stop: {Pubs.toDateFormat(stopDate, false)} |
-        <Text> Còn {tikopReducer.totalDate - tikopReducer.currentIndexWithdraw} Ngày</Text>
+        <Text> Còn {getDateRemaining()} Ngày</Text>
       </Text>
     );
   }
