@@ -61,7 +61,7 @@ const Tikop = (): JSX.Element => {
     setTotalDate(totalDate);
     const startDate = new Date();
     let startDateStr = Pubs.toDateFormat(startDate, true);
-    // startDateStr = '2023-03-31T03:58:02.250Z';
+    startDateStr = '2023-03-01T03:58:02.250Z';
 
     // save data to storage
     await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.TOTAL_DATE, totalDate.toString());

@@ -51,9 +51,10 @@ const BodyContent = (props: bodyProps): JSX.Element => {
   // }, [globalAppReducer.withdrawIndexCount]);
 
   useEffect(() => {
+    const index = tikopReducer.currentIndexWithdraw - 1;
     scrollRef.current.scrollTo({
       x: 0,
-      y: (tikopReducer.currentIndexWithdraw - 1) * 50,
+      y: index * 50 + index * 7.5,
       animated: true,
     });
   }, [globalAppReducer.viewCurrentCount]);
