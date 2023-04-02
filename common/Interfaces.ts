@@ -14,3 +14,8 @@ export interface I_dateTime {
   minutes: number,
   seconds: number,
 }
+
+export interface I_globalAppState {
+  viewCurrentCount?: number,
+  withdrawIndexCount?: number,
+}

@@ -7,9 +7,11 @@ import Pubs from "../../common/Pubs";
 import { useSelector } from "react-redux";
 import { I_tikopState } from "../../common/Interfaces";
 import TikopAction from "../../actions/TikopAction";
+import AntdIcon from 'react-native-vector-icons/AntDesign';
 
 type headerPrpos = PropsWithChildren<{
   onReset: Function,
+  onViewCurrent: Function,
 }>
 
 const tableHeader = ['Hôm Nay', 'Trạng Thái', 'Khả Lợi', 'Tiền Còn Lại'];
@@ -20,14 +22,14 @@ const Header = (props: headerPrpos): JSX.Element => {
   const tableData = [
     [
       Pubs.toDateFormat(Pubs.getCurrentDate(), false),
-      TikopAction.canWithdraw(tikopReducer.currentDateWithdraw, true) ? 'Được Rút' : 'Đã Rút', 
+      TikopAction.canWithdraw(tikopReducer.currentDateWithdraw, true) ? 'Được Rút' : <AntdIcon style={StylesCommon.textCenter} size={17} name="minuscircleo" />, 
       TikopAction.getCashEarn(tikopReducer),
       TikopAction. getCashRemaining(tikopReducer),
     ],
   ];
 
   const buttonViewCurrent = () => (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => props.onViewCurrent()}>
       <View>
         <Text style={[
           StylesCommon.textCenter,
@@ -59,7 +61,8 @@ const Header = (props: headerPrpos): JSX.Element => {
     stopDate.setDate(stopDate.getDate() + tikopReducer.totalDate - 1);
     return (
       <Text style={[StylesCommon.padding, StylesCommon.textCenter, StylesCommon.fwBold]}>
-        Start: {Pubs.toShortDate(tikopReducer.startDate)} | Stop: {Pubs.toDateFormat(stopDate, false)} | Còn {tikopReducer.totalDate - tikopReducer.currentIndexWithdraw} Ngày
+        Start: {Pubs.toShortDate(tikopReducer.startDate)} | Stop: {Pubs.toDateFormat(stopDate, false)} |
+        <Text> Còn {tikopReducer.totalDate - tikopReducer.currentIndexWithdraw} Ngày</Text>
       </Text>
     );
   }

@@ -1,10 +1,10 @@
-import { Alert, ScrollView, StyleSheet } from "react-native"
+import { ScrollView, StyleSheet } from "react-native"
 import StylesCommon from "../../common/StylesCommon";
 import CheckItem from "./CheckItem";
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import Pubs from "../../common/Pubs";
 import { useDispatch, useSelector } from "react-redux";
-import { I_tikopState } from "../../common/Interfaces";
+import { I_globalAppState, I_tikopState } from "../../common/Interfaces";
 import TikopAction from "../../actions/TikopAction";
 import { ActionTypes } from "../../common/ActionTypes";
 import { LOCAL_STORAGE_KEYS } from "../../common/Consts";
@@ -20,13 +20,15 @@ const BodyContent = (props: bodyProps): JSX.Element => {
   const [index, setIndex] = useState(1);
   const [dateFull, setDateFull] = useState('');
   const toast = useToast();
+  const scrollRef: any = useRef();
 
   const tikopReducer: I_tikopState = useSelector((state: any) => state.tikop);
+  const globalAppReducer: I_globalAppState = useSelector((state: any) => state.globalApp);
   const dispatch = useDispatch();
 
   const handleSetWithdraw = (index: number, dateFull: string) => {
-    // if (index <= tikopReducer.currentIndexWithdraw) return;
-
+    if (index <= tikopReducer.currentIndexWithdraw) return;
+    
     if (!TikopAction.canWithdraw(dateFull)) {
       // Alert.alert('Thông Báo', 'Hôm nay bạn đã rút rồi! Đợi qua ngày mai :))');
       toast.show('Hôm nay bạn đã rút rồi! Đợi qua ngày mai :))', {
@@ -42,6 +44,18 @@ const BodyContent = (props: bodyProps): JSX.Element => {
 
     onSubmitSetWithdraw(true);
   }
+
+  useEffect(() => {
+    handleSetWithdraw(1, Pubs.toDateFormat(Pubs.getCurrentDate(), true));
+  }, [globalAppReducer.withdrawIndexCount]);
+
+  useEffect(() => {
+    scrollRef.current.scrollTo({
+      x: 0,
+      y: (tikopReducer.currentIndexWithdraw - 1) * 50,
+      animated: true,
+    });
+  }, [globalAppReducer.viewCurrentCount]);
 
   const onSubmitSetWithdraw = async (isOk: boolean) => {
     setYesNoVisible(false);
@@ -83,15 +97,18 @@ const BodyContent = (props: bodyProps): JSX.Element => {
   }
 
   return (
-    <ScrollView style={[
-      StylesCommon.flex1,
-      StylesCommon.w100,
-      StylesCommon.h100,
-      styles.container,
-    ]}>
+    <ScrollView
+      style={[
+        StylesCommon.flex1,
+        StylesCommon.w100,
+        StylesCommon.h100,
+        styles.container,
+      ]}
+      ref={scrollRef}
+    >
       {renderCheckItems()}
 
-      <YesNoPopup onSubmit={ (isOk: boolean) => onSubmitSetWithdraw(isOk) } visible={yesNoVisible} />
+      <YesNoPopup onSubmit={(isOk: boolean) => onSubmitSetWithdraw(isOk)} visible={yesNoVisible} />
     </ScrollView>
   )
 }

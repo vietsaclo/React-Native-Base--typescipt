@@ -38,13 +38,13 @@ class Pubs {
     const toDate = new Date(toDateString);
 
     let count = 0;
-    console.log({
-      fromDate: this.toDateFormat(fromDate),
-      toDate: this.toDateFormat(toDate),
-    });
-    console.log('\n');
-    
-    
+    // console.log({
+    //   fromDate: this.toDateFormat(fromDate),
+    //   toDate: this.toDateFormat(toDate),
+    // });
+    // console.log('\n');
+
+    const MAX = 365 * 10;
     while (this.toDateFormat(fromDate) !== this.toDateFormat(toDate)) {
       count ++;
       console.log({
@@ -52,9 +52,8 @@ class Pubs {
         fromDate: this.toDateFormat(fromDate),
         toDate: this.toDateFormat(toDate),
       });
-      
       fromDate.setDate(fromDate.getDate() + 1);
-      if (count > 5) return 5;
+      if (count > MAX) return MAX;
     }
 
     return count;

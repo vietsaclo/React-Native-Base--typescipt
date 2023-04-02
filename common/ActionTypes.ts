@@ -13,4 +13,8 @@ export const ActionTypes = {
   TIKOP: {
     UPDATE: 'TIKOP_UPDATE',
   },
+
+  GLOBLE_APP: {
+    UPDATE: 'GLOBLE_APP_UPDATE',
+  },
 }

@@ -5,8 +5,6 @@ class TikopAction {
   static getCashEarn = (tikopReducer: I_tikopState): string => {
     if (!tikopReducer.currentDateWithdraw) return Pubs.VND.format(0);
     const spanNumber = Pubs.getDateSpan(tikopReducer.currentDateWithdraw, Pubs.toDateFormat(Pubs.getCurrentDate(), true));
-    console.log({spanNumber});
-    
     return Pubs.VND.format(spanNumber * tikopReducer.cashWithdraw);
   }
 
@@ -15,8 +13,6 @@ class TikopAction {
   }
 
   static canWithdraw = (dateFull: string, isTextDisplay: boolean = false): boolean => {
-    console.log({dateFull});
-    
     if (!dateFull) return false;
     const dateWithdraw = new Date(dateFull.split('T')[0]);
     const currentDate = new Date(Pubs.toDateFormat(new Date(), false));
