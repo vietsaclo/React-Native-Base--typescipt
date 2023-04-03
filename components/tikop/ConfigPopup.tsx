@@ -5,6 +5,7 @@ import { Row, Table, TableWrapper } from "react-native-table-component";
 import { COLORS } from "../../common/Consts";
 import StylesCommon from "../../common/StylesCommon";
 import Pubs from "../../common/Pubs";
+import DatePicker from 'react-native-date-picker'
 
 type configProps = PropsWithChildren<{
   visible: boolean,
@@ -35,13 +36,14 @@ const listDaoHan = [
 const ConfigPopup = (props: configProps): JSX.Element => {
   const [cashWithdraw, setCashWithdraw] = useState('0');
   const [buttonActiveKey, setButtonActiveKey] = useState(0);
+  const [startDate, setStartDate] = useState(new Date())
 
   const onSubmit = () => {
     const cash = Number(cashWithdraw);
     if (cash < 1000) return;
 
     Keyboard.dismiss();
-    props.onSubmit(listDaoHan[buttonActiveKey].value, cash);
+    props.onSubmit(listDaoHan[buttonActiveKey].value, cash, startDate);
   }
 
   const inputWithdraw = () => {
@@ -94,8 +96,11 @@ const ConfigPopup = (props: configProps): JSX.Element => {
             <Row data={[buttonSet(2), buttonSet(3)]} textStyle={styles.text}/>
             <Row data={[
               <Text style={[StylesCommon.padding, StylesCommon.fwBold, StylesCommon.textCenter]}>
-                Tổng kết: {listDaoHan[buttonActiveKey].text} ~ {Pubs.VND.format(Number(cashWithdraw))}/Ngày
+                Tổng kết: {listDaoHan[buttonActiveKey].text} ~ {Pubs.VND.format(Number(cashWithdraw))}/Ngày | Start: {Pubs.toDateFormat(startDate, false)}
               </Text>
+            ]} textStyle={styles.text}/>
+            <Row data={[
+              <DatePicker mode="date" date={startDate} onDateChange={setStartDate} />
             ]} textStyle={styles.text}/>
           </TableWrapper>
         </Table>

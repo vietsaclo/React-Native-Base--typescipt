@@ -52,14 +52,13 @@ const Tikop = (): JSX.Element => {
     updateByDispatch(Number(totalDate), Number(cashWithdraw), Number(currentIndexWithdraw), currentDateWithdraw, startDate);
   }
 
-  const handleConfigSubmit = async (totalDate: number, cashWithdraw: number) => {
+  const handleConfigSubmit = async (totalDate: number, cashWithdraw: number, startDate: Date) => {
     setConfigVisible(false);
     // console.log({
     //   totalDate,
     //   cashWithdraw,
     // });
     setTotalDate(totalDate);
-    const startDate = new Date();
     let startDateStr = Pubs.toDateFormat(startDate, true);
     // startDateStr = '2023-03-01T03:58:02.250Z';
 
