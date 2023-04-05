@@ -3,7 +3,6 @@ import StylesCommon from "../../common/StylesCommon";
 import AntdIcon from 'react-native-vector-icons/AntDesign';
 import { PropsWithChildren } from "react";
 import Pubs from "../../common/Pubs";
-import tikopReducer from "../../common/reducers/tikop";
 import { useSelector } from "react-redux";
 import { I_tikopState } from "../../common/Interfaces";
 

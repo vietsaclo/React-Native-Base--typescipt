@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { LOCAL_STORAGE_KEYS } from "./Consts";
 
 class Pubs {
   static async saveStorageWithKey(key: string, value: string) {
@@ -68,6 +69,21 @@ class Pubs {
     style: 'currency',
     currency: 'VND',
   });
+
+  static async getTikopNumberFromStorage() {
+    const tikopNumber = await AsyncStorage.getItem(LOCAL_STORAGE_KEYS.TIKOP.TIKOP_NUMBER);
+    return tikopNumber ? Number(tikopNumber) : 0;
+  }
+
+  static async saveTikopStorageWithKey(key: string, value: string) {
+    const tikopNumber = await this.getTikopNumberFromStorage();
+    await AsyncStorage.setItem(`${tikopNumber}_${key}`, value);
+  }
+
+  static async getTikopStorageWithKey(key: string) {
+    const tikopNumber = await this.getTikopNumberFromStorage();
+    return await AsyncStorage.getItem(`${tikopNumber}_${key}`);
+  }
 }
 
 export default Pubs;

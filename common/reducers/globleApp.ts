@@ -9,6 +9,7 @@ interface I_globalAppActionType {
 const initialState: I_globalAppState = {
   viewCurrentCount: 0,
   withdrawIndexCount: 0,
+  tikopNumber: 0,
 }
 const globleAppReducer = (state: I_globalAppState = initialState, action: I_globalAppActionType) => {
   const { type, payload } = action;

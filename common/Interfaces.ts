@@ -18,4 +18,5 @@ export interface I_dateTime {
 export interface I_globalAppState {
   viewCurrentCount?: number,
   withdrawIndexCount?: number,
+  tikopNumber?: number,
 }

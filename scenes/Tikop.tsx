@@ -1,116 +1,70 @@
-import { StyleSheet, View } from "react-native";
-import HeaderTikop from '../components/tikop/Header';
-import BodyContentTikop from "../components/tikop/BodyContent";
-import ConfigPopup from "../components/tikop/ConfigPopup";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ToastProvider } from 'react-native-toast-notifications'
+import TikopBlock from "../components/tikop/TikopBlock";
+import { Row, Table, TableWrapper } from "react-native-table-component";
+import { COLORS, LOCAL_STORAGE_KEYS } from "../common/Consts";
+import StylesCommon from "../common/StylesCommon";
 import { useEffect, useState } from "react";
 import Pubs from "../common/Pubs";
-import { LOCAL_STORAGE_KEYS } from "../common/Consts";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ActionTypes } from "../common/ActionTypes";
-import { I_globalAppState, I_tikopState } from "../common/Interfaces";
-import { ToastProvider } from 'react-native-toast-notifications'
+import { I_globalAppState } from "../common/Interfaces";
 
 const Tikop = (): JSX.Element => {
-  const [configVisible, setConfigVisible] = useState(false);
-  const [totalDate, setTotalDate] = useState(0);
-
-  const tikopReducer: I_tikopState = useSelector((state: any) => state.tikop);
-  const globalAppReducer: I_globalAppState = useSelector((state: any) => state.globalApp);
+  const [buttonActiveKey, setButtonActiveKey] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    reloadFromStorage();
+    Pubs.getTikopNumberFromStorage().then((value: number) => {
+      if (value !== buttonActiveKey) {
+        handleChangeTikopNumber(value);
+      }
+    });
   }, []);
 
-  const updateByDispatch = (totalDate: number, cashWithdraw: number, currentIndexWithdraw: number, currentDateWithdraw: string, startDate: string) => {
-    if (!currentDateWithdraw) {
-      currentDateWithdraw = Pubs.toDateFormat(Pubs.getCurrentDate());
-    }
-    const payload: I_tikopState = {
-      totalDate: totalDate,
-      cashWithdraw: cashWithdraw,
-      currentIndexWithdraw: currentIndexWithdraw,
-      currentDateWithdraw,
-      startDate,
-    };
-    dispatch({
-      type: ActionTypes.TIKOP.UPDATE,
-      payload,
-    })
+  const buttonActiveStyle = (buttonKey: number, activeKey: number) => {
+    return buttonKey === activeKey ? [
+      StylesCommon.bgThird,
+      StylesCommon.textWhite,
+    ] : []
   }
 
-  const reloadFromStorage = async () => {
-    const totalDate = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.TOTAL_DATE);
-    const cashWithdraw = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.CASH_WITHDRAW);
-    let currentIndexWithdraw = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_INDEX_WITHDRAW) ?? 0;
-    let currentDateWithdraw = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_DATE_WITHDRAW) ?? '';
-    let startDate = await Pubs.getStorageWithKey(LOCAL_STORAGE_KEYS.START_DATE_TIKOP) ?? Pubs.toDateFormat(Pubs.getCurrentDate(), true);
-
-    if (!totalDate || !cashWithdraw) return;
-    setTotalDate(Number(totalDate));
-
-    updateByDispatch(Number(totalDate), Number(cashWithdraw), Number(currentIndexWithdraw), currentDateWithdraw, startDate);
-  }
-
-  const handleConfigSubmit = async (totalDate: number, cashWithdraw: number, startDate: Date) => {
-    setConfigVisible(false);
-    // console.log({
-    //   totalDate,
-    //   cashWithdraw,
-    // });
-    setTotalDate(totalDate);
-    let startDateStr = Pubs.toDateFormat(startDate, true);
-    // startDateStr = '2023-03-01T03:58:02.250Z';
-
-    // save data to storage
-    await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.TOTAL_DATE, totalDate.toString());
-    await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CASH_WITHDRAW, cashWithdraw.toString());
-    await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_INDEX_WITHDRAW, '0');
-    await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.START_DATE_TIKOP, startDateStr);
-    await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_DATE_WITHDRAW, startDateStr);
-
-    updateByDispatch(totalDate, cashWithdraw, 0, startDateStr, startDateStr);
-
-    // handleSetWithdraw(tikopReducer);
-  }
-
-  const handleSetWithdraw = async (tikopReducer: I_tikopState) => {
-    setTimeout(async () => {
-      const index = 1;
-      const dateFull = Pubs.toDateFormat(Pubs.getCurrentDate(), true);
-      const payload: I_tikopState = {
-        ...tikopReducer,
-        currentIndexWithdraw: index,
-        currentDateWithdraw: dateFull,
-      };
-      await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_INDEX_WITHDRAW, index.toString());
-      await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_DATE_WITHDRAW, dateFull);
-
-      dispatch({
-        type: ActionTypes.TIKOP.UPDATE,
-        payload,
-      });
-      reloadFromStorage();
-    }, 2000);
-  }
-
-  const onGoToCurrentView = () => {
+  const handleChangeTikopNumber = async (key: number) => {
+    await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.TIKOP_NUMBER, key.toString());
+    setButtonActiveKey(key);
+    
     const payload: I_globalAppState = {
-      viewCurrentCount: (globalAppReducer.viewCurrentCount ?? 0) + 1,
+      tikopNumber: key,
     }
     dispatch({
       type: ActionTypes.GLOBLE_APP.UPDATE,
       payload,
-    })
+    });
   }
 
+  const buttonSet = (key: number) => {
+    return (
+      <TouchableOpacity onPress={() => handleChangeTikopNumber(key)}>
+        <View>
+          <Text style={[
+            StylesCommon.textCenter,
+            StylesCommon.padding,
+            StylesCommon.upper,
+            [...buttonActiveStyle(key, buttonActiveKey)]
+          ]}>Tikop-{key + 1}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
   return (
     <ToastProvider>
       <View style={styles.container}>
-        <HeaderTikop onViewCurrent={onGoToCurrentView} onReset={() => setConfigVisible(true)} />
-        <BodyContentTikop totalDate={totalDate} />
-
-        <ConfigPopup onSubmit={handleConfigSubmit} visible={configVisible} onVisible={setConfigVisible} />
+        <Table borderStyle={{ borderWidth: 2, borderColor: COLORS.text_black }}>
+          <TableWrapper>
+            <Row data={[buttonSet(0), buttonSet(1), buttonSet(2), buttonSet(3), buttonSet(4),]} />
+          </TableWrapper>
+        </Table>
+        <TikopBlock tikopNumber={buttonActiveKey} />
       </View>
     </ToastProvider>
   )

@@ -45,8 +45,8 @@ const BodyContent = (props: bodyProps): JSX.Element => {
       payload,
     });
 
-    await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_INDEX_WITHDRAW, index.toString());
-    await Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.CURRENT_DATE_WITHDRAW, dateFull);
+    await Pubs.saveTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.CURRENT_INDEX_WITHDRAW, index.toString());
+    await Pubs.saveTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.CURRENT_DATE_WITHDRAW, dateFull);
   }
 
   // useEffect(() => {
