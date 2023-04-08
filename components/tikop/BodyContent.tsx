@@ -24,10 +24,6 @@ const BodyContent = (props: bodyProps): JSX.Element => {
   const dispatch = useDispatch();
 
   const handleSetWithdraw = (index: number, dateFull: string) => {
-    console.log({
-      index,
-      indexTimoed: tikopReducer.currentIndexTimoed,
-    });
     if (index <= tikopReducer.currentIndexWithdraw && index <= tikopReducer.currentIndexTimoed) return;
     
     if (!TikopAction.canWithdraw(dateFull)) {

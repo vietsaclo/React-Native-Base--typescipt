@@ -1,10 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import StylesCommon from "../../common/StylesCommon";
 import AntdIcon from 'react-native-vector-icons/AntDesign';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { PropsWithChildren } from "react";
 import Pubs from "../../common/Pubs";
 import { useSelector } from "react-redux";
 import { I_tikopState } from "../../common/Interfaces";
+import { COLORS } from "../../common/Consts";
 
 type checkProps = PropsWithChildren<{
   isChecked: boolean,
@@ -23,6 +25,15 @@ const CheckItem = (props: checkProps): JSX.Element => {
     ] : [];
   }
 
+  const renderTimoed = () => {
+    const result = [];
+    result.push(<AntdIcon size={17} name="wallet" />);
+    result.push('  ');
+    result.push(<AntdIcon size={17} name="doubleleft" />)
+
+    return result;
+  }
+
   return (
     <TouchableOpacity
       onPress={() => props.onPress()}
@@ -39,9 +50,7 @@ const CheckItem = (props: checkProps): JSX.Element => {
 
       <View style={styles.rightIcon}>
         <Text style={[StylesCommon.textRight]}>
-          {props.isTimoed ? <Text style={[
-            // StylesCommon.fwBold,
-          ]}>{Pubs.getCurrentTimeUTC()}&nbsp;&nbsp;</Text> : ''}
+          {props.isTimoed ? renderTimoed() : ''}&nbsp;&nbsp;
           {props.isChecked ? Pubs.VND.format(tikopReducer.cashWithdraw) : ''}&nbsp;
           {props.isChecked ? <AntdIcon size={17} name="checkcircleo" /> : ''}
         </Text>
