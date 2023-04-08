@@ -12,6 +12,7 @@ const initialState: I_tikopState = {
   currentIndexWithdraw: 0,
   currentDateWithdraw: '',
   startDate: '',
+  currentIndexTimoed: 0,
 }
 const tikopReducer = (state: I_tikopState = initialState, action: I_tikopActionType) => {
   const { type, payload } = action;

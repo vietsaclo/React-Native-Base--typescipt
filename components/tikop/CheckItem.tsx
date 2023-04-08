@@ -8,6 +8,7 @@ import { I_tikopState } from "../../common/Interfaces";
 
 type checkProps = PropsWithChildren<{
   isChecked: boolean,
+  isTimoed: boolean,
   textDisplay: string,
   onPress: Function,
 }>
@@ -38,6 +39,9 @@ const CheckItem = (props: checkProps): JSX.Element => {
 
       <View style={styles.rightIcon}>
         <Text style={[StylesCommon.textRight]}>
+          {props.isTimoed ? <Text style={[
+            // StylesCommon.fwBold,
+          ]}>{Pubs.getCurrentTimeUTC()}&nbsp;&nbsp;</Text> : ''}
           {props.isChecked ? Pubs.VND.format(tikopReducer.cashWithdraw) : ''}&nbsp;
           {props.isChecked ? <AntdIcon size={17} name="checkcircleo" /> : ''}
         </Text>
@@ -55,6 +59,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   rightIcon: {
-    width: '60%',
+    width: '65%',
   },
 });

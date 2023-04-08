@@ -29,6 +29,12 @@ class Pubs {
     };
   }
 
+  static getCurrentTimeUTC(): string {
+    const dateStr = this.toDateFormat(this.getCurrentDate(), true);
+    const time = dateStr.split('T')[1];
+    return time.substring(0, time.lastIndexOf('.')) + '.UTC';
+  }
+
   static toShortDate(date: string): string {
     if (!date) return '';
     return date.split('T')[0];

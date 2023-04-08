@@ -26,7 +26,7 @@ const TikopBlock = (props: tikopBlockProps): JSX.Element => {
     reloadFromStorage();
   }, [globalAppReducer.tikopNumber]);
 
-  const updateByDispatch = (totalDate: number, cashWithdraw: number, currentIndexWithdraw: number, currentDateWithdraw: string, startDate: string) => {
+  const updateByDispatch = (totalDate: number, cashWithdraw: number, currentIndexWithdraw: number, currentDateWithdraw: string, startDate: string, currentIndexTimoed: number) => {
     if (!currentDateWithdraw) {
       currentDateWithdraw = Pubs.toDateFormat(Pubs.getCurrentDate());
     }
@@ -36,6 +36,7 @@ const TikopBlock = (props: tikopBlockProps): JSX.Element => {
       currentIndexWithdraw: currentIndexWithdraw,
       currentDateWithdraw,
       startDate,
+      currentIndexTimoed,
     };
     dispatch({
       type: ActionTypes.TIKOP.UPDATE,
@@ -49,10 +50,11 @@ const TikopBlock = (props: tikopBlockProps): JSX.Element => {
     let currentIndexWithdraw = await Pubs.getTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.CURRENT_INDEX_WITHDRAW) ?? 0;
     let currentDateWithdraw = await Pubs.getTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.CURRENT_DATE_WITHDRAW) ?? '';
     let startDate = await Pubs.getTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.START_DATE_TIKOP) ?? Pubs.toDateFormat(Pubs.getCurrentDate(), true);
+    const currentIndexTimoed = await Pubs.getTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.CURRENT_INDEX_TIMOED) ?? 0;
 
     setTotalDate(Number(totalDate));
 
-    updateByDispatch(Number(totalDate), Number(cashWithdraw), Number(currentIndexWithdraw), currentDateWithdraw, startDate);
+    updateByDispatch(Number(totalDate), Number(cashWithdraw), Number(currentIndexWithdraw), currentDateWithdraw, startDate, Number(currentIndexTimoed));
   }
 
   const handleConfigSubmit = async (totalDate: number, cashWithdraw: number, startDate: Date) => {
@@ -72,7 +74,7 @@ const TikopBlock = (props: tikopBlockProps): JSX.Element => {
     await Pubs.saveTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.START_DATE_TIKOP, startDateStr);
     await Pubs.saveTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.CURRENT_DATE_WITHDRAW, startDateStr);
 
-    updateByDispatch(totalDate, cashWithdraw, 0, startDateStr, startDateStr);
+    updateByDispatch(totalDate, cashWithdraw, 0, startDateStr, startDateStr, 0);
 
     // handleSetWithdraw(tikopReducer);
   }

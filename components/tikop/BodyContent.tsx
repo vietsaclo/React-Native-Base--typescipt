@@ -23,9 +23,13 @@ const BodyContent = (props: bodyProps): JSX.Element => {
   const globalAppReducer: I_globalAppState = useSelector((state: any) => state.globalApp);
   const dispatch = useDispatch();
 
-  const handleSetWithdraw = async (index: number, dateFull: string) => {
-    if (index <= tikopReducer.currentIndexWithdraw) return;
-
+  const handleSetWithdraw = (index: number, dateFull: string) => {
+    console.log({
+      index,
+      indexTimoed: tikopReducer.currentIndexTimoed,
+    });
+    if (index <= tikopReducer.currentIndexWithdraw && index <= tikopReducer.currentIndexTimoed) return;
+    
     if (!TikopAction.canWithdraw(dateFull)) {
       // Alert.alert('Thông Báo', 'Hôm nay bạn đã rút rồi! Đợi qua ngày mai :))');
       toast.show('Hôm nay bạn đã rút rồi! Đợi qua ngày mai :))', {
@@ -35,6 +39,17 @@ const BodyContent = (props: bodyProps): JSX.Element => {
       return;
     }
 
+    // Case: set checked
+    if (index > tikopReducer.currentIndexWithdraw) {
+      setActiveIndexWithdraw(index, dateFull);
+      return;
+    }
+
+    // case: set timoed
+    setActiveIndexTimoed(index);
+  }
+
+  const setActiveIndexWithdraw = async (index: number, dateFull: string) => {
     const payload: I_tikopState = {
       ...tikopReducer,
       currentIndexWithdraw: index,
@@ -47,6 +62,19 @@ const BodyContent = (props: bodyProps): JSX.Element => {
 
     await Pubs.saveTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.CURRENT_INDEX_WITHDRAW, index.toString());
     await Pubs.saveTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.CURRENT_DATE_WITHDRAW, dateFull);
+  }
+
+  const setActiveIndexTimoed = async (index: number) => {
+    const payload: I_tikopState = {
+      ...tikopReducer,
+      currentIndexTimoed: index,
+    };
+    dispatch({
+      type: ActionTypes.TIKOP.UPDATE,
+      payload,
+    });
+
+    await Pubs.saveTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.CURRENT_INDEX_TIMOED, index.toString());
   }
 
   // useEffect(() => {
@@ -80,6 +108,7 @@ const BodyContent = (props: bodyProps): JSX.Element => {
             onPress={() => handleSetWithdraw(i + 1, fullDate)}
             isChecked={i < tikopReducer.currentIndexWithdraw}
             textDisplay={Pubs.toDateFormat(currentDate)}
+            isTimoed={i < tikopReducer.currentIndexTimoed}
           />
         </View>
       );

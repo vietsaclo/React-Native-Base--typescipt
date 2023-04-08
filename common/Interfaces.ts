@@ -4,6 +4,7 @@ export interface I_tikopState {
   currentIndexWithdraw: number,
   currentDateWithdraw: string,
   startDate: string,
+  currentIndexTimoed: number,
 }
 
 export interface I_dateTime {
