@@ -1,6 +1,19 @@
 # Read Me
 
 ## run project
+
+### Android
+  - `node -v` = `v14.20.1`
+  - `yarn`
+  - `yarn start`
+
+### IOS
+  - *If having trouble with iOS, try to reinstall the dependencies by running:
+  - `cd ios`
+  - `bundle install`
+  - `bundle exec pod install`
+  - Run Project
+  - `node -v` = `v14.20.1`
   - `yarn`
   - `yarn start`
 
