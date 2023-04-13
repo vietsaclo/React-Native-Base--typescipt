@@ -27,9 +27,9 @@ const CheckItem = (props: checkProps): JSX.Element => {
 
   const renderTimoed = () => {
     const result = [];
-    result.push(<AntdIcon size={17} name="wallet" />);
+    result.push(<AntdIcon key={0} size={17} name="wallet" />);
     result.push('  ');
-    result.push(<AntdIcon size={17} name="doubleleft" />)
+    result.push(<AntdIcon key={1} size={17} name="doubleleft" />)
 
     return result;
   }

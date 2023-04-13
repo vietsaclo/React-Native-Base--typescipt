@@ -73,6 +73,7 @@ const TikopBlock = (props: tikopBlockProps): JSX.Element => {
     await Pubs.saveTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.CURRENT_INDEX_WITHDRAW, '0');
     await Pubs.saveTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.START_DATE_TIKOP, startDateStr);
     await Pubs.saveTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.CURRENT_DATE_WITHDRAW, startDateStr);
+    await Pubs.saveTikopStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.CURRENT_INDEX_TIMOED, '0');
 
     updateByDispatch(totalDate, cashWithdraw, 0, startDateStr, startDateStr, 0);
 
