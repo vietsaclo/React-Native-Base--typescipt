@@ -5,7 +5,7 @@ import tikopReducer from './tikop';
 import globleAppReducer from './globleApp';
 
 export default combineReducers({
-  auth: authReducer,
+  userLogged: authReducer,
   chatGPT: chatGptReducer,
   tikop: tikopReducer,
   globalApp: globleAppReducer,

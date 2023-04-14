@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "./Consts";
+import { COLORS, CONFIG_BY_PLATFORM } from "./Consts";
 
 const StylesCommon = StyleSheet.create({
   flex1: {
@@ -27,6 +27,13 @@ const StylesCommon = StyleSheet.create({
   textLineThrough: {
     textDecorationLine: 'line-through',
   },
+  textUnderLine: {
+    textDecorationLine: 'underline',
+  },
+  textSmall: {
+    fontSize: 10,
+  },
+
   padding: {
     padding: 6,
   },
@@ -39,9 +46,19 @@ const StylesCommon = StyleSheet.create({
   marginHz: {
     marginHorizontal: 6,
   },
+  paddingTop: {
+    paddingTop: 6,
+  },
+  paddingBottom: {
+    paddingBottom: 6,
+  },
+  paddingTopPlatform: {
+    paddingTop: CONFIG_BY_PLATFORM.paddingTop,
+  },
+
   border: {
     borderStyle: 'solid',
-    borderColor: COLORS.text_black,
+    borderColor: COLORS.border_secondary,
     borderWidth: 1,
   },
   borderDot: {
@@ -57,12 +74,24 @@ const StylesCommon = StyleSheet.create({
   bgThird: {
     backgroundColor: COLORS.background_third,
   },
+  bgPrimary: {
+    backgroundColor: COLORS.background_primary,
+  },
+  bgSecondary: {
+    backgroundColor: COLORS.background_secondary,
+  },
   textWhite: {
     color: COLORS.text_white,
   },
   textPrimary: {
     color: COLORS.text_primary,
   },
+  textSecondary: {
+    color: COLORS.text_secondary,
+  },
+  textBlack: {
+    color: COLORS.text_black,
+  }
 });
 
 export default StylesCommon;

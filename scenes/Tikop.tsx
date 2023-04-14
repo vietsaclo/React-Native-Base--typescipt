@@ -2,13 +2,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ToastProvider } from 'react-native-toast-notifications'
 import TikopBlock from "../components/tikop/TikopBlock";
 import { Row, Table, TableWrapper } from "react-native-table-component";
-import { COLORS, LOCAL_STORAGE_KEYS } from "../common/Consts";
-import StylesCommon from "../common/StylesCommon";
 import { useEffect, useState } from "react";
-import Pubs from "../common/Pubs";
 import { useDispatch } from "react-redux";
-import { ActionTypes } from "../common/ActionTypes";
-import { I_globalAppState } from "../common/Interfaces";
+import Pubs from "../common/@core/Pubs";
+import StylesCommon from "../common/@core/StylesCommon";
+import { COLORS, LOCAL_STORAGE_KEYS } from "../common/@core/Consts";
+import { I_globalAppState } from "../common/@core/Interfaces";
+import { ActionTypes } from "../common/@core/ActionTypes";
 
 const Tikop = (): JSX.Element => {
   const [buttonActiveKey, setButtonActiveKey] = useState(0);

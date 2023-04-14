@@ -21,3 +21,13 @@ export interface I_globalAppState {
   withdrawIndexCount?: number,
   tikopNumber?: number,
 }
+
+export interface I_loggedInResponse {
+  loggedInType: string | null;
+  permissions: string[] | undefined,
+  accessToken: string | undefined | null,
+  name: string | null | undefined,
+  userId: string | null | undefined,
+  email: string | null | undefined,
+  imageUrl: string | null | undefined,
+}

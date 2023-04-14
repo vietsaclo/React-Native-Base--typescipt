@@ -1,12 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import StylesCommon from "../../common/StylesCommon";
 import AntdIcon from 'react-native-vector-icons/AntDesign';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { PropsWithChildren } from "react";
-import Pubs from "../../common/Pubs";
 import { useSelector } from "react-redux";
-import { I_tikopState } from "../../common/Interfaces";
-import { COLORS } from "../../common/Consts";
+import { I_tikopState } from "../../common/@core/Interfaces";
+import StylesCommon from "../../common/@core/StylesCommon";
+import Pubs from "../../common/@core/Pubs";
 
 type checkProps = PropsWithChildren<{
   isChecked: boolean,

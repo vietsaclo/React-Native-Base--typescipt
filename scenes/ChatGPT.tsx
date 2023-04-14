@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { COLORS } from '../common/Consts';
 import Header from '../components/common/Header';
 import BodyContent from '../components/home/BodyContent';
 import Footer from '../components/home/Footer';
+import { COLORS } from '../common/@core/Consts';
 
 const Home = () => {
   return (

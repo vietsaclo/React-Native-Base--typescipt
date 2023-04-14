@@ -1,18 +1,21 @@
 import Env from './Env';
 
 export const COLORS = {
-  background_primary: '#fff',
-  background_secondary: '#dcdcdc',
-  background_third: '#8c8c8c',
+  background_primary: '#212326',
+  background_secondary: '#000',
+  background_third: '#ffc035',
 
-  text_primary: '#000',
-  text_secondary: '#010101',
+  text_primary: '#ffc035',
+  text_secondary: '#fff',
   text_white: '#fff',
   text_black: '#000',
+
+  border_primary: '#fff',
+  border_secondary: '#878787',
 }
 
 export const CONFIG_BY_PLATFORM = {
-  paddingTop: Env.IS_START_PLATFORM_IOS ? 30 : 0,
+  paddingTop: Env.IS_START_PLATFORM_IOS ? 50 : 0,
 }
 
 export const LOCAL_STORAGE_KEYS = {
@@ -24,5 +27,14 @@ export const LOCAL_STORAGE_KEYS = {
     START_DATE_TIKOP: 'TIKOP_START_DATE_TIKOP',
     TIKOP_NUMBER: 'TIKOP_TIKOP_NUMBER',
     CURRENT_INDEX_TIMOED: 'TIKOP_CURRENT_INDEX_TIMOED',
-  }
+  },
+  LOGIN: {
+    TYPE: 'LOGIN:_TYPE',
+    TYPE_FACEBOOK: 'LOGIN:_TYPE_FACEBOOK',
+    TYPE_GOOGLE: 'LOGIN:_TYPE_GOOGLE',
+    TYPE_APPLE: 'LOGIN:_TYPE_APPLE',
+  },
+  USER_LOGGED: {
+    JSON_DATA: 'USER_LOGGED:_JSON_DATA',
+  },
 }

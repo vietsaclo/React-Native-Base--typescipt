@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Text, StyleSheet, View, TextInput, TouchableOpacity, Keyboard } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
-import ChatGPT from '../../actions/ChatGPT';
-import { COLORS } from '../../common//Consts';
-import { ActionTypes } from '../../common/ActionTypes';
+import ChatGPT from '../../actions/@core/chat-gpt/ChatGPT';
+import { ActionTypes } from '../../common/@core/ActionTypes';
+import { COLORS } from '../../common/@core/Consts';
 
 const chatGPT = new ChatGPT();
 

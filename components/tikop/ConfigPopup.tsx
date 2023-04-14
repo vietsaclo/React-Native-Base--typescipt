@@ -2,10 +2,10 @@ import { PropsWithChildren, useState } from "react";
 import { Button, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import Dialog, { DialogContent, SlideAnimation } from 'react-native-popup-dialog';
 import { Row, Table, TableWrapper } from "react-native-table-component";
-import { COLORS } from "../../common/Consts";
-import StylesCommon from "../../common/StylesCommon";
-import Pubs from "../../common/Pubs";
 import DatePicker from 'react-native-date-picker'
+import StylesCommon from "../../common/@core/StylesCommon";
+import { COLORS } from "../../common/@core/Consts";
+import Pubs from "../../common/@core/Pubs";
 
 type configProps = PropsWithChildren<{
   visible: boolean,

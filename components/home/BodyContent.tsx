@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native'
 import { useSelector } from 'react-redux';
-import { ActionTypes } from '../../common/ActionTypes';
 import Message from './Message';
+import { ActionTypes } from '../../common/@core/ActionTypes';
 
 const BodyContent = () => {
   const scrollRef: any = useRef();

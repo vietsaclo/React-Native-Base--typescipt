@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LOCAL_STORAGE_KEYS } from "./Consts";
+import { I_loggedInResponse } from "./Interfaces";
 
 class Pubs {
   static async saveStorageWithKey(key: string, value: string) {
@@ -89,6 +90,32 @@ class Pubs {
   static async getTikopStorageWithKey(key: string) {
     const tikopNumber = await this.getTikopNumberFromStorage();
     return await AsyncStorage.getItem(`${tikopNumber}_${key}`);
+  }
+
+  static async saveUserLoggedInStorage(userLogged: I_loggedInResponse) {
+    const userJson = JSON.stringify(userLogged);
+    await this.saveStorageWithKey(LOCAL_STORAGE_KEYS.USER_LOGGED.JSON_DATA, userJson);
+  }
+
+  static async clearUserLoggedInStorage() {
+    await this.saveStorageWithKey(LOCAL_STORAGE_KEYS.USER_LOGGED.JSON_DATA, JSON.stringify({}));
+  }
+
+  static async getUserLoggedInStorage(): Promise<I_loggedInResponse | null> {
+    const userJson = await this.getStorageWithKey(LOCAL_STORAGE_KEYS.USER_LOGGED.JSON_DATA);
+    if (!userJson) {
+      return null;
+    }
+    const userObject = JSON.parse(userJson);
+    if (!userObject.userId) {
+      return null;
+    }
+
+    const result: I_loggedInResponse = {
+      ...userObject
+    };
+  
+    return result;
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 import { useSelector } from 'react-redux';
-import { COLORS } from '../../common/Consts';
+import { COLORS } from '../../common/@core/Consts';
 
 const Header = () => {
   const gptReducer = useSelector((state: any) => state.chatGPT);

@@ -1,5 +1,5 @@
 import { Configuration, OpenAIApi } from "openai";
-import Env from "../common/Env";
+import Env from "../../../common/@core/Env";
 
 class ChatGPT {
     private configuration: any = null;

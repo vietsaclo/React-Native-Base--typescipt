@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import { StyleSheet, Text } from "react-native"
 import Dialog, { DialogFooter, DialogButton, DialogContent, SlideAnimation } from 'react-native-popup-dialog';
-import StylesCommon from "../../common/StylesCommon";
+import StylesCommon from "../../common/@core/StylesCommon";
 
 type yesNoProps = PropsWithChildren<{
   visible: boolean,

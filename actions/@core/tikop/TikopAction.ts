@@ -1,5 +1,5 @@
-import { I_tikopState } from "../common/Interfaces";
-import Pubs from "../common/Pubs";
+import { I_tikopState } from "../../../common/@core/Interfaces";
+import Pubs from "../../../common/@core/Pubs";
 
 class TikopAction {
   static getCashEarn = (tikopReducer: I_tikopState): string => {

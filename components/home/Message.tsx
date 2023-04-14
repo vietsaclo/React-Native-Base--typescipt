@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 import { Text, StyleSheet, View } from 'react-native'
-import { COLORS } from '../../common//Consts';
+import { COLORS } from '../../common/@core/Consts'
 
 type messageProps = PropsWithChildren<{
   isMe: boolean,

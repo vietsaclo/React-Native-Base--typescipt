@@ -1,14 +1,14 @@
 import { ScrollView, StyleSheet, View } from "react-native"
-import StylesCommon from "../../common/StylesCommon";
 import CheckItem from "./CheckItem";
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
-import Pubs from "../../common/Pubs";
 import { useDispatch, useSelector } from "react-redux";
-import { I_globalAppState, I_tikopState } from "../../common/Interfaces";
-import TikopAction from "../../actions/TikopAction";
-import { ActionTypes } from "../../common/ActionTypes";
-import { LOCAL_STORAGE_KEYS } from "../../common/Consts";
 import { useToast } from "react-native-toast-notifications";
+import { I_globalAppState, I_tikopState } from "../../common/@core/Interfaces";
+import TikopAction from "../../actions/@core/tikop/TikopAction";
+import { ActionTypes } from "../../common/@core/ActionTypes";
+import { LOCAL_STORAGE_KEYS } from "../../common/@core/Consts";
+import Pubs from "../../common/@core/Pubs";
+import StylesCommon from "../../common/@core/StylesCommon";
 
 type bodyProps = PropsWithChildren<{
   totalDate: number;

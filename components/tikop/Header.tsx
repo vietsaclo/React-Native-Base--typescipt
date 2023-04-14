@@ -1,13 +1,13 @@
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native"
 import { Table, TableWrapper, Row, Rows } from 'react-native-table-component';
-import { COLORS } from "../../common/Consts";
-import StylesCommon from "../../common/StylesCommon";
 import { PropsWithChildren } from "react";
-import Pubs from "../../common/Pubs";
 import { useSelector } from "react-redux";
-import { I_tikopState } from "../../common/Interfaces";
-import TikopAction from "../../actions/TikopAction";
 import AntdIcon from 'react-native-vector-icons/AntDesign';
+import { I_tikopState } from "../../common/@core/Interfaces";
+import Pubs from "../../common/@core/Pubs";
+import TikopAction from "../../actions/@core/tikop/TikopAction";
+import StylesCommon from "../../common/@core/StylesCommon";
+import { COLORS } from "../../common/@core/Consts";
 
 type headerPrpos = PropsWithChildren<{
   onReset: Function,

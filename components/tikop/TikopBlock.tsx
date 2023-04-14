@@ -3,12 +3,12 @@ import HeaderTikop from '../../components/tikop/Header';
 import BodyContentTikop from "../../components/tikop/BodyContent";
 import ConfigPopup from "../../components/tikop/ConfigPopup";
 import { PropsWithChildren, useEffect, useState } from "react";
-import Pubs from "../../common/Pubs";
-import { LOCAL_STORAGE_KEYS } from "../../common/Consts";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionTypes } from "../../common/ActionTypes";
-import { I_globalAppState, I_tikopState } from "../../common/Interfaces";
 import { ToastProvider } from 'react-native-toast-notifications'
+import { I_globalAppState, I_tikopState } from "../../common/@core/Interfaces";
+import Pubs from "../../common/@core/Pubs";
+import { LOCAL_STORAGE_KEYS } from "../../common/@core/Consts";
+import { ActionTypes } from "../../common/@core/ActionTypes";
 
 type tikopBlockProps = PropsWithChildren<{
   tikopNumber: number;
