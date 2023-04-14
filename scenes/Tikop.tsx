@@ -50,6 +50,7 @@ const Tikop = (): JSX.Element => {
             StylesCommon.textCenter,
             StylesCommon.padding,
             StylesCommon.upper,
+            StylesCommon.textPrimary,
             [...buttonActiveStyle(key, buttonActiveKey)]
           ]}>Tikop-{key + 1}</Text>
         </View>
