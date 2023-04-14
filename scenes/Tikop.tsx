@@ -60,7 +60,7 @@ const Tikop = (): JSX.Element => {
   return (
     <ToastProvider>
       <View style={styles.container}>
-        <Table borderStyle={{ borderWidth: 2, borderColor: COLORS.text_black }}>
+        <Table borderStyle={styles.tableStyle}>
           <TableWrapper>
             <Row data={[buttonSet(0), buttonSet(1), buttonSet(2), buttonSet(3), buttonSet(4),]} />
           </TableWrapper>
@@ -76,6 +76,9 @@ export default Tikop;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 7,
-  }
+    padding: 2,
+  },
+  tableStyle: {
+    
+  },
 });

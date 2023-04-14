@@ -29,13 +29,18 @@ const Header = (props: headerPrpos): JSX.Element => {
   ];
 
   const buttonViewCurrent = () => (
-    <TouchableOpacity onPress={() => props.onViewCurrent()}>
+    <TouchableOpacity style={[
+      StylesCommon.border,
+      StylesCommon.bderRadius,
+      StylesCommon.marginRight,
+      // StylesCommon.marginTop,
+    ]} onPress={() => props.onViewCurrent()}>
       <View>
         <Text style={[
           StylesCommon.textCenter,
           StylesCommon.padding,
-          StylesCommon.bgThird,
-          StylesCommon.textWhite,
+          StylesCommon.fwBold,
+          StylesCommon.textPrimary,
           StylesCommon.upper,
         ]}>Đến hiện tại</Text>
       </View>
@@ -43,13 +48,18 @@ const Header = (props: headerPrpos): JSX.Element => {
   );
 
   const buttonReset = () => (
-    <TouchableOpacity onPress={() => props.onReset()}>
+    <TouchableOpacity style={[
+      StylesCommon.border,
+      StylesCommon.bderRadius,
+      StylesCommon.marginLeft,
+      // StylesCommon.marginTop,
+    ]} onPress={() => props.onReset()}>
       <View>
         <Text style={[
           StylesCommon.textCenter,
           StylesCommon.padding,
-          StylesCommon.bgThird,
-          StylesCommon.textWhite,
+          StylesCommon.fwBold,
+          StylesCommon.textPrimary,
           StylesCommon.upper,
         ]}>Cài đặt lại</Text>
       </View>
@@ -74,10 +84,10 @@ const Header = (props: headerPrpos): JSX.Element => {
 
   return (
     <View style={styles.container}>
-      <Table borderStyle={{ borderWidth: 2, borderColor: COLORS.text_black }}>
+      <Table borderStyle={styles.tableStyle}>
         <TableWrapper>
           <Row data={[headerText()]} style={styles.head} textStyle={styles.text} />
-          <Row data={tableHeader} style={styles.head} textStyle={styles.text} />
+          <Row data={tableHeader} style={styles.head} textStyle={styles.textHeader} />
           <Rows data={tableData} textStyle={styles.text} />
           <Rows data={[
             [buttonViewCurrent(), buttonReset()],
@@ -100,7 +110,16 @@ const styles = StyleSheet.create({
   },
   text: {
     margin: 6,
-    color: COLORS.text_black,
+    color: COLORS.text_primary,
     textAlign: 'center',
   },
+  textHeader: {
+    fontWeight: 'bold',
+    margin: 6,
+    color: COLORS.text_primary,
+    textAlign: 'center',
+  },
+  tableStyle: {
+
+  }
 });
