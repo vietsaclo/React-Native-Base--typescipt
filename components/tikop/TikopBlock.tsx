@@ -23,6 +23,20 @@ const TikopBlock = (props: tikopBlockProps): JSX.Element => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const key = props.tikopNumber;
+    Pubs.saveStorageWithKey(LOCAL_STORAGE_KEYS.TIKOP.TIKOP_NUMBER, key.toString())
+    .then((_) => {
+      const payload: I_globalAppState = {
+        tikopNumber: key,
+      }
+      dispatch({
+        type: ActionTypes.GLOBLE_APP.UPDATE,
+        payload,
+      });
+    });
+  }, []);
+
+  useEffect(() => {
     reloadFromStorage();
   }, [globalAppReducer.tikopNumber]);
 

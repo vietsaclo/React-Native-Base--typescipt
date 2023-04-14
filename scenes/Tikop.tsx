@@ -51,6 +51,7 @@ const Tikop = (): JSX.Element => {
             StylesCommon.padding,
             StylesCommon.upper,
             StylesCommon.textPrimary,
+            // StylesCommon.bgPrimary,
             [...buttonActiveStyle(key, buttonActiveKey)]
           ]}>Tikop-{key + 1}</Text>
         </View>
@@ -79,6 +80,6 @@ const styles = StyleSheet.create({
     padding: 2,
   },
   tableStyle: {
-    
+
   },
 });

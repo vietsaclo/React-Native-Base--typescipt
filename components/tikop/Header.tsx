@@ -33,7 +33,7 @@ const Header = (props: headerPrpos): JSX.Element => {
       StylesCommon.border,
       StylesCommon.bderRadius,
       StylesCommon.marginRight,
-      // StylesCommon.marginTop,
+      StylesCommon.marginTop,
     ]} onPress={() => props.onViewCurrent()}>
       <View>
         <Text style={[
@@ -52,7 +52,7 @@ const Header = (props: headerPrpos): JSX.Element => {
       StylesCommon.border,
       StylesCommon.bderRadius,
       StylesCommon.marginLeft,
-      // StylesCommon.marginTop,
+      StylesCommon.marginTop,
     ]} onPress={() => props.onReset()}>
       <View>
         <Text style={[
