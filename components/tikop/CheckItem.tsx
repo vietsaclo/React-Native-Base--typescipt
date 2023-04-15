@@ -39,7 +39,7 @@ const CheckItem = (props: checkProps): JSX.Element => {
         StylesCommon.padding,
         StylesCommon.border,
         StylesCommon.marginVc,
-        StylesCommon.bderRadius,
+        // StylesCommon.bderRadius,
         styles.container,
         !props.isChecked ? StylesCommon.borderDot : {},
       ]}>

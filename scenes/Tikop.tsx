@@ -9,6 +9,7 @@ import StylesCommon from "../common/@core/StylesCommon";
 import { COLORS, LOCAL_STORAGE_KEYS } from "../common/@core/Consts";
 import { I_globalAppState } from "../common/@core/Interfaces";
 import { ActionTypes } from "../common/@core/ActionTypes";
+import HeaderTop from "../components/tikop/HeaderTop";
 
 const Tikop = (): JSX.Element => {
   const [buttonActiveKey, setButtonActiveKey] = useState(0);
@@ -61,7 +62,9 @@ const Tikop = (): JSX.Element => {
   return (
     <ToastProvider>
       <View style={styles.container}>
-        <Table borderStyle={styles.tableStyle}>
+        <HeaderTop />
+
+        <Table borderStyle={StylesCommon.tableStyle}>
           <TableWrapper>
             <Row data={[buttonSet(0), buttonSet(1), buttonSet(2), buttonSet(3), buttonSet(4),]} />
           </TableWrapper>
@@ -78,8 +81,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 2,
-  },
-  tableStyle: {
-
   },
 });

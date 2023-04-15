@@ -30,10 +30,9 @@ const Header = (props: headerPrpos): JSX.Element => {
 
   const buttonViewCurrent = () => (
     <TouchableOpacity style={[
-      StylesCommon.border,
-      StylesCommon.bderRadius,
-      StylesCommon.marginRight,
-      StylesCommon.marginTop,
+      // StylesCommon.border,
+      // StylesCommon.bderRadius,
+      // StylesCommon.margin,
     ]} onPress={() => props.onViewCurrent()}>
       <View>
         <Text style={[
@@ -49,10 +48,9 @@ const Header = (props: headerPrpos): JSX.Element => {
 
   const buttonReset = () => (
     <TouchableOpacity style={[
-      StylesCommon.border,
-      StylesCommon.bderRadius,
-      StylesCommon.marginLeft,
-      StylesCommon.marginTop,
+      // StylesCommon.border,
+      // StylesCommon.bderRadius,
+      // StylesCommon.margin,
     ]} onPress={() => props.onReset()}>
       <View>
         <Text style={[
@@ -84,7 +82,7 @@ const Header = (props: headerPrpos): JSX.Element => {
 
   return (
     <View style={styles.container}>
-      <Table borderStyle={styles.tableStyle}>
+      <Table borderStyle={StylesCommon.tableStyle}>
         <TableWrapper>
           <Row data={[headerText()]} style={styles.head} textStyle={styles.text} />
           <Row data={tableHeader} style={styles.head} textStyle={styles.textHeader} />
@@ -119,7 +117,4 @@ const styles = StyleSheet.create({
     color: COLORS.text_primary,
     textAlign: 'center',
   },
-  tableStyle: {
-
-  }
 });
