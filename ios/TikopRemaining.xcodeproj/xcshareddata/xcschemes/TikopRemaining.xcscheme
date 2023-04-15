@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "ReactNativeBaseTypescript.app"
-               BlueprintName = "ReactNativeBaseTypescript"
-               ReferencedContainer = "container:ReactNativeBaseTypescript.xcodeproj">
+               BuildableName = "TikopRemaining.app"
+               BlueprintName = "TikopRemaining"
+               ReferencedContainer = "container:TikopRemaining.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ReactNativeBaseTypescriptTests.xctest"
-               BlueprintName = "ReactNativeBaseTypescriptTests"
-               ReferencedContainer = "container:ReactNativeBaseTypescript.xcodeproj">
+               BuildableName = "TikopRemainingTests.xctest"
+               BlueprintName = "TikopRemainingTests"
+               ReferencedContainer = "container:TikopRemaining.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ReactNativeBaseTypescript.app"
-            BlueprintName = "ReactNativeBaseTypescript"
-            ReferencedContainer = "container:ReactNativeBaseTypescript.xcodeproj">
+            BuildableName = "TikopRemaining.app"
+            BlueprintName = "TikopRemaining"
+            ReferencedContainer = "container:TikopRemaining.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ReactNativeBaseTypescript.app"
-            BlueprintName = "ReactNativeBaseTypescript"
-            ReferencedContainer = "container:ReactNativeBaseTypescript.xcodeproj">
+            BuildableName = "TikopRemaining.app"
+            BlueprintName = "TikopRemaining"
+            ReferencedContainer = "container:TikopRemaining.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
