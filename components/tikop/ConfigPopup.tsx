@@ -58,8 +58,9 @@ const ConfigPopup = (props: configProps): JSX.Element => {
 
   const buttonActiveStyle = (buttonKey: number, activeKey: number) => {
     return buttonKey === activeKey ? [
-      StylesCommon.bgThird,
-      StylesCommon.textWhite,
+      StylesCommon.bgSecondary,
+      StylesCommon.textPrimary,
+      StylesCommon.fwBold,
     ] : []
   }
 
@@ -89,7 +90,7 @@ const ConfigPopup = (props: configProps): JSX.Element => {
       dialogStyle={[styles.dialog, StylesCommon.bderRadius]}
     >
       <DialogContent style={[StylesCommon.w100]}>
-        <Table borderStyle={{ borderWidth: 2, borderColor: COLORS.text_black}}>
+        <Table borderStyle={StylesCommon.tableStyle}>
           <TableWrapper>
             <Row data={[inputWithdraw()]} textStyle={styles.text} />
             <Row data={[buttonSet(0), buttonSet(1)]} textStyle={styles.text}/>

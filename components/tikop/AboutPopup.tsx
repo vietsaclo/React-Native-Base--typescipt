@@ -3,7 +3,7 @@ import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "rea
 import Dialog, { SlideAnimation, DialogContent } from 'react-native-popup-dialog';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import StylesCommon from "../../common/@core/StylesCommon";
-import { COLORS, CONFIG_BY_PLATFORM } from "../../common/@core/Consts";
+import { COLORS } from "../../common/@core/Consts";
 import { MyHr } from "../common/ComponentsCommon";
 import Octicon from 'react-native-vector-icons/Octicons';
 import AntdIcon from 'react-native-vector-icons/AntDesign';
@@ -138,7 +138,6 @@ const styles = StyleSheet.create({
   },
   dialogStyle: {
     backgroundColor: COLORS.background_primary,
-    paddingTop: CONFIG_BY_PLATFORM.paddingTop,
   },
   dialogStyleHeader: {
     padding: 10,
@@ -148,42 +147,4 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  logo: {
-    width: '60%',
-    height: 100,
-    marginVertical: 70,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logoText: {
-    color: COLORS.text_primary,
-    fontWeight: 'bold',
-    fontSize: 25,
-    textAlign: 'center',
-  },
-  loginOrCreate: {
-    marginTop: 50,
-    marginBottom: 30,
-    color: COLORS.text_white,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  button: {
-    width: '100%',
-    alignItems: 'center',
-    borderStyle: 'solid',
-    borderColor: COLORS.text_white,
-    borderWidth: 1,
-    padding: 13,
-    borderRadius: 7,
-    marginBottom: 20,
-  },
-  buttonText1: {
-    color: COLORS.text_secondary,
-    fontWeight: 'bold',
-  },
-  buttonEmail: {
-    backgroundColor: COLORS.text_primary,
-    borderColor: COLORS.text_primary,
-  }
 });
