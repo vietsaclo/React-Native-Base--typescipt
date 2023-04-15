@@ -118,6 +118,7 @@ const AboutPopup = (props: AboutPopupProps): JSX.Element => {
                 StylesCommon.padding,
                 StylesCommon.fwBold,
                 StylesCommon.textUnderLine,
+                styles.endTextBottom,
               ]}>
                 By me a cup <MatirialIcon size={20} name="local-cafe" />: MOMO 0398768860
               </Text>
@@ -146,5 +147,8 @@ const styles = StyleSheet.create({
   DialogContent: {
     flex: 1,
     alignItems: 'center',
+  },
+  endTextBottom: {
+    marginTop: 20,
   },
 });
