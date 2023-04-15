@@ -1,4 +1,4 @@
-package com.vietsaclo.react.ative.base.ypescript;
+package com.vietsaclo.tikop.remaining;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

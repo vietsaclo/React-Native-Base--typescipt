@@ -95,9 +95,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.vietsaclo.react.ative.base.ypescript"
+    namespace "com.vietsaclo.tikop.remaining"
     defaultConfig {
-        applicationId "com.vietsaclo.react.ative.base.ypescript"
+        applicationId "com.vietsaclo.tikop.remaining"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

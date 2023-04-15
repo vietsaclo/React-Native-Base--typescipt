@@ -449,7 +449,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vietsaclo.react.ative.base.ypescript";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vietsaclo.tikop.remaining";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TikopRemaining.app/TikopRemaining";
 			};
@@ -473,7 +473,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vietsaclo.react.ative.base.ypescript";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vietsaclo.tikop.remaining";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TikopRemaining.app/TikopRemaining";
 			};
@@ -499,7 +499,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vietsaclo.react.ative.base.ypescript";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vietsaclo.tikop.remaining";
 				PRODUCT_NAME = "TikopRemaining";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -526,7 +526,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vietsaclo.react.ative.base.ypescript";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vietsaclo.tikop.remaining";
 				PRODUCT_NAME = "TikopRemaining";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
