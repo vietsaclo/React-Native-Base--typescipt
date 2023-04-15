@@ -79,7 +79,7 @@ const AboutPopup = (props: AboutPopupProps): JSX.Element => {
                 ]}>update to pro here</Text>
               </TouchableOpacity>
 
-              <MyHr text="Pravicy policy" />
+              <MyHr text="Privacy policy" />
               <MatirialIcon color={COLORS.text_primary} size={70} name="policy" />
               <Text style={[
                 StylesCommon.textPrimary,
