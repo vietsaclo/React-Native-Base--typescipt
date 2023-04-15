@@ -62,7 +62,7 @@ const Tikop = (): JSX.Element => {
   return (
     <ToastProvider>
       <View style={styles.container}>
-        <HeaderTop />
+        <HeaderTop headerText="Tikop Remaining" />
 
         <Table borderStyle={StylesCommon.tableStyle}>
           <TableWrapper>

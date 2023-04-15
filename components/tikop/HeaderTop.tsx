@@ -2,13 +2,21 @@ import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import StylesCommon from "../../common/@core/StylesCommon";
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { COLORS } from "../../common/@core/Consts";
+import { PropsWithChildren, useState } from "react";
+import AboutPopup from './AboutPopup';
 
-const HeaderTop = (): JSX.Element => {
+type headerProps = PropsWithChildren<{
+  headerText: string,
+}>
+
+const HeaderTop = (props: headerProps): JSX.Element => {
+  const [isShowAbout, setIsShowAbout] = useState<boolean>(false);
+
   return (
     <View style={[
       styles.container,
     ]}>
-      <TouchableOpacity onPress={() => Alert.alert('ok')}>
+      <TouchableOpacity onPress={() => setIsShowAbout(true)}>
         <MaterialIcon color={COLORS.text_primary} size={27} name="menu" />
       </TouchableOpacity>
 
@@ -17,8 +25,10 @@ const HeaderTop = (): JSX.Element => {
         StylesCommon.textPrimary,
         styles.headerText,
       ]}>
+        {props.headerText}
+      </Text>
 
-        Tikop Remaining</Text>
+      <AboutPopup visible={isShowAbout} updateVisible={setIsShowAbout} />
     </View>
   );
 }
