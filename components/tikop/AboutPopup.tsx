@@ -53,7 +53,7 @@ const AboutPopup = (props: AboutPopupProps): JSX.Element => {
               <Octicon color={COLORS.text_primary} size={70} name="versions" />
               <Text style={[
                 StylesCommon.textPrimary,
-              ]}>v1.0</Text>
+              ]}>v1.0.1</Text>
 
               <MyHr text="Developer" />
               <AntdIcon color={COLORS.text_primary} size={70} name="customerservice" />
