@@ -2,6 +2,10 @@
 
 ## run project
 
+### Before to start
+  - `git clone https://github.com/vietsaclo/React-Native-Packagist.git` to the same level with current project
+  - `yarn @core`
+
 ### Android
   - `node -v` = `v14.20.1`
   - `yarn`
@@ -15,7 +19,13 @@
   - Run Project
   - `node -v` = `v14.20.1`
   - `yarn`
-  - `yarn start`
+  - `yarn start | yarn ios (if error)`
+
+### IOS - Setup (Step by step)
+  - `ruby -v` = `2.7.6` (swith by rvm)
+  - `cocoapods insall not required`
+  - `rvm list` - `* [arm64]`
+  - `gem install bundler:2.4.9`
 
 ## java home
   - `/usr/libexec/java_home`
